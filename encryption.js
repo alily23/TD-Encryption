@@ -81,8 +81,13 @@ console.log('Private key:\n', privateKey);
 let buffer;
 let encryptedMessage;
 function encryptWithPublicKey(message, publicKey) {
+    //The butter.from method is used to convert the plaintext 'message'
+    // to a Buffer object using the utf-8 encoding
     buffer = Buffer.from(message, 'utf-8');
+    //The publicEncrypt method is used to encrypt the message
+    // with the given publicKey in PEM format
     encryptedMessage = crypto.publicEncrypt(publicKey, buffer);
+    //The encrypted data is converted to a Base64-encoded string
     return encrypted.toString('base64');
 }
 console.log("Encryption : ")
@@ -91,6 +96,7 @@ console.log(encryptWithPublicKey("Bienvenue à tous !", publicKey))
 //Decryption
 function decryptWithPrivateKey(encryptedMessage, privateKey) {
     const buffer = Buffer.from(encryptedMessage, 'base64');
+    //The privateDecrypt method is used to decrypt the message with the given privateKey in PEM format
     const decrypted = crypto.privateDecrypt({ key: privateKey, passphrase: '' }, buffer);
     return decrypted.toString('utf-8');
 }
