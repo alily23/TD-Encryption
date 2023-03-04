@@ -44,12 +44,12 @@ console.log("Key : ", key)
 
 //2. Decrypt data (Symmetric)
 
-let decypher;
+let decipher;
 let decrypted;
 
 function decryptdata(ciphertext, key) {
-    const decipher = crypto.createDecipheriv('aes-256-cbc', key, Buffer.from(iv, 'hex'));
-    const decrypted = Buffer.concat([decipher.update(Buffer.from(ciphertext, 'hex')), decipher.final()]);
+    decipher = crypto.createDecipheriv('aes-256-cbc', key, Buffer.from(iv, 'hex'));
+    decrypted = Buffer.concat([decipher.update(Buffer.from(ciphertext, 'hex')), decipher.final()]);
     return decrypted.toString();
 }
 
